@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    // environment {
-    //     scannerHome = tool 'sonar7.0'
-    // }
+    environment {
+        scannerHome = tool 'sonar8.0'
+    }
 
     stages {
 
@@ -31,22 +31,22 @@ pipeline {
             }
         }
 
-        // stage('Sonar Analysis') {
-        //     steps {
-        //         withSonarQubeEnv('sonar') {
-        //             sh '''
-        //             ${scannerHome}/bin/sonar-scanner \
-        //             -Dsonar.projectKey=java-tomcat-sample \
-        //             -Dsonar.projectName=java-tomcat-sample \
-        //             -Dsonar.projectVersion=4.0 \
-        //             -Dsonar.sources=src/ \
-        //             -Dsonar.junit.reportsPath=target/surefire-reports/ \
-        //             -Dsonar.jacoco.reportsPath=target/jacoco.exec \
-        //             -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml
-        //             '''
-        //         }
-        //     }
-        // }
+        stage('Sonar Analysis') {
+            steps {
+                withSonarQubeEnv('sonarqubeserver') {
+                    sh '''
+                    ${scannerHome}/bin/sonar-scanner \
+                    -Dsonar.projectKey=java-tomcat-sample \
+                    -Dsonar.projectName=java-tomcat-sample \
+                    -Dsonar.projectVersion=4.0 \
+                    -Dsonar.sources=src/ \
+                    -Dsonar.junit.reportsPath=target/surefire-reports/ \
+                    -Dsonar.jacoco.reportsPath=target/jacoco.exec \
+                    -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml
+                    '''
+                }
+            }
+        }
 
         // stage('UploadArtifact') {
         //     steps {
