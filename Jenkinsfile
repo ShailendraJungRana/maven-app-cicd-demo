@@ -53,7 +53,7 @@ pipeline {
                 nexusArtifactUploader(
                     nexusVersion: 'nexus3',
                     protocol: 'http',
-                    nexusUrl: '172.31.25.23:8081',
+                    nexusUrl: '172.31.17.86:8081',
                     groupId: 'QA',
                     version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}", //installing the timestamp in jenkins plugins
                     repository: 'sonarqube_nexus',
