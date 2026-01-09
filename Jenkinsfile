@@ -48,27 +48,27 @@ pipeline {
             }
         }
 
-        // stage('UploadArtifact') {
-        //     steps {
-        //         nexusArtifactUploader(
-        //             nexusVersion: 'nexus3',
-        //             protocol: 'http',
-        //             nexusUrl: '172.31.25.23:8081',
-        //             groupId: 'QA',
-        //             version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}", //installing the timestamp in jenkins plugins
-        //             repository: 'sonarqube_nexus',
-        //             credentialsId: 'sonartypecred',
-        //             artifacts: [
-        //                 [
-        //                     artifactId: 'java-tomcat-sample',
-        //                     classifier: '', //default null
-        //                     file: 'target/java-tomcat-maven-example.war',
-        //                     type: 'war'
-        //                 ]
-        //             ]
-        //         )
-        //     }
-        // }
+        stage('UploadArtifact') {
+            steps {
+                nexusArtifactUploader(
+                    nexusVersion: 'nexus3',
+                    protocol: 'http',
+                    nexusUrl: '172.31.25.23:8081',
+                    groupId: 'QA',
+                    version: "${env.BUILD_ID}-${env.BUILD_TIMESTAMP}", //installing the timestamp in jenkins plugins
+                    repository: 'sonarqube_nexus',
+                    credentialsId: 'sonartypecred',
+                    artifacts: [
+                        [
+                            artifactId: 'java-tomcat-sample',
+                            classifier: '', //default null
+                            file: 'target/java-tomcat-maven-example.war',
+                            type: 'war'
+                        ]
+                    ]
+                )
+            }
+        }
 
     }
 }
